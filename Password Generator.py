@@ -90,47 +90,25 @@ class PasswordGenerator:
              
     #Method that generates the password based on what the user wanted              
     def generator(self, passwordLength, capsAllowed, charsAllowed, numbsAllowed):
-          
-        if capsAllowed == True and charsAllowed == True and numbsAllowed == True:
-              
-              randomChar = ''.join([random.choice(string.ascii_letters + string.digits + string.punctuation) for n in range(passwordLength)]) 
-              print(randomChar)
 
-        elif capsAllowed == True and charsAllowed == False and numbsAllowed == False:
-              
-              randomChar = ''.join([random.choice(string.ascii_letters) for n in range(passwordLength)]) 
-              print(randomChar)
-        
-        elif capsAllowed == False and charsAllowed == True and numbsAllowed == False:
-              
-              randomChar = ''.join([random.choice(string.ascii_lowercase + string.punctuation) for n in range(passwordLength)]) 
-              print(randomChar)
-        
-        elif capsAllowed == False and charsAllowed == False and numbsAllowed == True:
-              
-              randomChar = ''.join([random.choice(string.ascii_lowercase + string.digits) for n in range(passwordLength)]) 
-              print(randomChar)
-        
-        elif capsAllowed == True and charsAllowed == True and numbsAllowed == False:
-              
-              randomChar = ''.join([random.choice(string.ascii_letters + string.punctuation) for n in range(passwordLength)]) 
-              print(randomChar)
-        
-        elif capsAllowed == True and charsAllowed == False and numbsAllowed == True:
-              
-              randomChar = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(passwordLength)]) 
-              print(randomChar)
-        
-        elif capsAllowed == False and charsAllowed == True and numbsAllowed == True:
-              
-              randomChar = ''.join([random.choice(string.ascii_lowercase + string.punctuation + string.digits) for n in range(passwordLength)]) 
-              print(randomChar)
-        
+        options = []
+
+        if capsAllowed == True:
+              options = [string.ascii_letters]
         else:
-              
-              randomChar = ''.join([random.choice(string.ascii_lowercase) for n in range(passwordLength)]) 
-              print(randomChar)
+              options = [string.ascii_lowercase]
 
+        if charsAllowed == True:
+              options.append(string.punctuation)     
+
+        if numbsAllowed == True:
+              options.append(string.digits)
+      
+        choices = ''.join(options)
+      
+        randompassword = ''.join([random.choice(choices) for n in range(passwordLength)]) 
+        print(randompassword)
+  
 
 mainobj = PasswordGenerator()
 mainobj.main()
